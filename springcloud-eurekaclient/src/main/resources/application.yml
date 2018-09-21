@@ -1,0 +1,19 @@
+server:
+  #当前服务端口号
+  port: 8002
+spring:
+  application:
+    #当前应用名称
+    name: eurekaclient
+eureka:
+  instance:
+      # 心跳设置，告诉服务器该实例仍在使用
+      lease-renewal-interval-in-seconds: 5
+      # 告诉服务器如果10秒内未发送任何续约请求，则关闭该客户端
+      lease-expiration-duration-in-seconds: 10
+  client:
+    serviceUrl:
+      #注册中心的地址
+      defaultZone: http://localhost:8001/eureka/
+    # 抓取服务列表
+    registry-fetch-interval-seconds: 30
