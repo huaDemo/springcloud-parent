@@ -1,3 +1,14 @@
+spring:
+  application:
+    name: configclient
+  cloud:
+    config:
+      label: master
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: configserver
+
 eureka:
   instance:
     # 心跳设置，告诉服务器该实例仍在使用
@@ -11,6 +22,6 @@ eureka:
   client:
     serviceUrl:
       #注册中心的地址
-      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://localhost:8001/eureka/
     # 抓取服务列表
     registry-fetch-interval-seconds: 30
