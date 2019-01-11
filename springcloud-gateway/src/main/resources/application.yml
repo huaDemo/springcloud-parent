@@ -1,0 +1,33 @@
+server:
+  # 当前服务端口号
+  port: 9000
+spring:
+  application:
+    # 当前应用名称
+    name: gateway
+  # spring cloud gateway 路由配置方式
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 是否与服务发现组件进行结合，通过 serviceId(必须设置成大写) 转发到具体的服务实例。默认为false，设为true便开启通过服务中心的自动根据 serviceId 创建路由的功能。
+          enabled: true
+          # 路由访问方式：http://Gateway_HOST:Gateway_PORT/大写的serviceId/**，其中微服务应用名默认大写访问。
+          lowerCaseServiceId: true
+
+eureka:
+  instance:
+    # 心跳设置，告诉服务器该实例仍在使用
+    lease-renewal-interval-in-seconds: 5
+    # 告诉服务器如果10秒内未发送任何续约请求，则关闭该客户端
+    lease-expiration-duration-in-seconds: 10
+    # 在注册中心显示ip
+    prefer-ip-address: true
+    # 将Instance ID设置成IP:端口的形式
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    serviceUrl:
+      # 注册中心的地址
+      defaultZone: http://localhost:8001/eureka/
+    # 抓取服务列表
+    registry-fetch-interval-seconds: 30
