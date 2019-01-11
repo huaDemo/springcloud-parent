@@ -1,10 +1,14 @@
 server:
-  #当前服务端口号
+  # 当前服务端口号
   port: 8006
 spring:
   application:
-    #当前应用名称
+    # 当前应用名称
     name: feignclient
+  # zipkin日志追踪
+  sleuth:
+    sampler:
+      probability: 1.0   #2.0后percentage改为probability
 eureka:
   instance:
       # 心跳设置，告诉服务器该实例仍在使用

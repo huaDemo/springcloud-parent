@@ -1,14 +1,18 @@
 server:
   #当前服务端口号
-  port: 8005
+  port: 9411
 spring:
   application:
     #当前应用名称
-    name: feign
-  # zipkin日志追踪
-  sleuth:
-    sampler:
-      probability: 1.0   #2.0后percentage改为probability
+    name: zipkin
+  #zipkin:
+    #base-url: http://localhost:9411
+management:
+  metrics:
+    web:
+      server:
+        #避免访问zipkin页面报java.lang.IllegalArgumentException
+        auto-time-requests: false
 eureka:
   instance:
       # 心跳设置，告诉服务器该实例仍在使用
